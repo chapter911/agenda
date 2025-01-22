@@ -38,6 +38,9 @@ dependencies:
   board_datetime_picker: ^2.3.0
   get: any
   intl: any
+  downloadsfolder: any
+  pdf: any
+  permission_handler: any
   sqflite: any
 
 dev_dependencies:

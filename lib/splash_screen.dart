@@ -1,7 +1,10 @@
+import 'dart:developer';
+
 import 'package:agenda_pemprov_kalteng/home_page.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -14,6 +17,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+    cekPermission();
     Future.delayed(const Duration(seconds: 2))
         .then((val) => Get.to(() => const HomePage()));
   }
@@ -33,5 +37,15 @@ class _SplashScreenState extends State<SplashScreen> {
         ),
       ),
     );
+  }
+
+  void cekPermission() async {
+    Map<Permission, PermissionStatus> statuses = await [
+      Permission.location,
+      Permission.storage,
+      Permission.manageExternalStorage,
+      Permission.camera,
+    ].request();
+    log(statuses.toString());
   }
 }
